@@ -1,11 +1,12 @@
 <template lang="pug">
-  v-layout
-    v-flex(sm-3)
-      posts-list
-    v-flex(sm-6)
-      post-editor
-    v-flex(sm-3)
-      // post-details
+  v-container(grid-list-md fluid)
+    v-layout(wrap)
+      v-flex(xs12 sm3)
+        posts-list(class="elevation-1")
+      v-flex(xs12 sm6)
+        post-editor
+      v-flex(xs12 sm3)
+        post-details
 </template>
 
 <script>

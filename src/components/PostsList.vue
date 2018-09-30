@@ -1,5 +1,6 @@
 <template lang="pug">
   v-list
+    v-subheader List
     template(v-for="post in posts")
       v-list-tile(:key="post.id"
         @click="setActivePost(post.id)"
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapMutations } from 'vuex'
 
   export default {
     name: 'posts-list',
@@ -17,12 +18,7 @@
       ...mapState(['posts']),
     },
     methods: {
-      setActivePost(id) {
-        this.$store.commit('setState', {
-          key: 'postListActiveId',
-          val: id
-        })
-      },
+      ...mapMutations(['setActivePost']),
     },
   }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { database } from '@mauromadeit/vue-commons'
+import { store as _store, database } from '@mauromadeit/vue-commons'
+import activePost from './modules/activePost'
 
 const db = new database({ ref: 'journal' })
 
@@ -9,24 +10,24 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     posts: [],
-    postListActiveId: null,
-  },
-  getters: {
-    activePost({ posts, postListActiveId }) {
-      return posts.filter(p => p.id === postListActiveId)[0] || null
-    },
   },
   mutations: {
-    setState(state, {key, val}) {
-      state[key] = val
+    ..._store.mutations,
+    setActivePost(state, id) {
+      const post = state.posts.filter(p => p.id === id)[0]
+      if (post) state.activePost = post
     },
   },
   actions: {
-    savePost(context, payload) {
+    savePost({ state }) {
+      const payload = state.activePost
       if (payload.id) db.set('posts/'+payload.id, payload).subscribe()
       else db.push('posts', payload).subscribe()
     },
-  }
+  },
+  modules: {
+    activePost,
+  },
 })
 
 db.get('posts', true, false).subscribe(posts => {

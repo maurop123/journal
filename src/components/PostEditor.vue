@@ -1,40 +1,36 @@
 <template lang="pug">
-  v-card
-    v-card-title
-      v-text-field(
-        v-model="title"
-        label="Title"
-      )
-    //v-card-text
-    medium-editor(
-      :value="description"
-      @input="x => newDescription = x"
-      class="elevation-0"
-    )
-    v-card-actions
+  v-card(class="pa-3")
+    v-card-title(class="display-1 pl-0") {{ activePost.title }}
+    v-card-text(class="pa-0")
+      state-model(stateProp="activePost.description")
+        medium-editor(
+          slot-scope="{ value, input }"
+          :value="value"
+          @input="input"
+          class="elevation-0"
+        )
+    v-card-actions(class="pr-0")
       v-spacer
-      v-btn(@click="save") save
+      v-btn(@click="savePost") save
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import moment from 'moment'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'posts-editor',
-    data() {
+    /*data() {
       return {
         id: null,
-        title: '',
         createdDatetime: moment().format('x'),
         description: '',
         newDescription: '',
       }
-    },
+    },*/
     computed: {
-      ...mapGetters(['activePost']),
+      activePost() { return this.$store.state.activePost }
     },
-    watch: {
+    /*watch: {
       activePost(val) {
         if (val) {
           this.id = val.id
@@ -45,10 +41,10 @@
           this.reset()
         }
       },
-    },
+    },*/
     methods: {
       ...mapActions(['savePost']),
-      save() {
+      /*save() {
         const { id, title, createdDatetime, newDescription: description } = this
         if (!id) this.savePost({ title, description, createdDatetime })
         else this.savePost({ id, title, description, createdDatetime })
@@ -59,7 +55,7 @@
         this.createdDatetime = moment().format('x')
         this.description = ''
         this.newDescription = ''
-      },
+      },*/
     },
   }
 </script>
