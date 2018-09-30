@@ -7,11 +7,17 @@ function defaultState() {
     title: '',
     description: '',
     createdDatetime: moment().format('x'),
-    lastUpdated: moment().format('x'),
+    lastUpdated: null,
   }
 }
 
 const state = defaultState()
+
+const getters = {
+  lastUpdated({ lastUpdated }) {
+    return (lastUpdated) ? moment(lastUpdated, 'x').fromNow() : lastUpdated
+  },
+}
 
 const mutations = {
   resetActivePost(state) {
@@ -31,6 +37,7 @@ const actions = {
 
 export default {
   state,
+  getters,
   mutations,
   actions,
 }

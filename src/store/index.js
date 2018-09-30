@@ -26,7 +26,7 @@ const store = new Vuex.Store({
 db.get('posts', true, false).subscribe(posts => {
   if (posts) store.commit('setState', {
     key: 'posts',
-    val: posts,
+    val: posts.reverse(),
   })
 })
 

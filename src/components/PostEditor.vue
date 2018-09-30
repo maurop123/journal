@@ -9,13 +9,16 @@
           @input="input"
           class="elevation-0"
         )
-    v-card-actions(class="pr-0")
+    v-card-actions(class="px-0")
+      span(v-if="lastUpdated"
+        class="caption"
+      ) Last updated {{ lastUpdated }}
       v-spacer
       v-btn(@click="savePost") save
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'posts-editor',
@@ -25,11 +28,14 @@
       }
     },
     computed: {
-      activePost() { return this.$store.state.activePost }
+      ...mapGetters(['lastUpdated']),
+      activePost() { return this.$store.state.activePost },
+      activePostId() { return this.$store.state.activePost.id },
     },
     watch: {
-      activePost(val, old) {
-        if (val.id !== old.id) this.newDescription = val.description
+      activePostId(val, old) {
+        if (val !== old)
+          this.newDescription = this.activePost.description
       },
     },
     methods: {
