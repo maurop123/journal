@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "postbuild": "rsync -raze \"ssh -i ../../.ssh/godaddy.pem\" --progress --delete ~/code/journal/dist/ mauromadeit@160.153.41.2:/home/mauromadeit/public_html/journal/",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
