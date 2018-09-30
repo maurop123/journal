@@ -5,7 +5,7 @@
       state-model(stateProp="activePost.description")
         medium-editor(
           slot-scope="{ value, input }"
-          :value="value"
+          :value="newDescription"
           @input="input"
           class="elevation-0"
         )
@@ -19,43 +19,21 @@
 
   export default {
     name: 'posts-editor',
-    /*data() {
+    data() {
       return {
-        id: null,
-        createdDatetime: moment().format('x'),
-        description: '',
-        newDescription: '',
+        newDescription: ''
       }
-    },*/
+    },
     computed: {
       activePost() { return this.$store.state.activePost }
     },
-    /*watch: {
-      activePost(val) {
-        if (val) {
-          this.id = val.id
-          this.title = val.title
-          this.createdDatetime = val.createdDatetime
-          this.description = val.description
-        } else {
-          this.reset()
-        }
+    watch: {
+      activePost(val, old) {
+        if (val.id !== old.id) this.newDescription = val.description
       },
-    },*/
+    },
     methods: {
       ...mapActions(['savePost']),
-      /*save() {
-        const { id, title, createdDatetime, newDescription: description } = this
-        if (!id) this.savePost({ title, description, createdDatetime })
-        else this.savePost({ id, title, description, createdDatetime })
-      },
-      reset() {
-        this.id = null
-        this.title = ''
-        this.createdDatetime = moment().format('x')
-        this.description = ''
-        this.newDescription = ''
-      },*/
     },
   }
 </script>
