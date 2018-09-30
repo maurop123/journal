@@ -15,7 +15,8 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  import _debounce from 'lodash/debounce'
 
   export default {
     name: 'posts-editor',
@@ -25,11 +26,12 @@
       }
     },
     computed: {
-      activePost() { return this.$store.state.activePost }
+      ...mapGetters(['activePost']),
     },
     watch: {
       activePost(val, old) {
         if (val.id !== old.id) this.newDescription = val.description
+        else this.savePost()
       },
     },
     methods: {

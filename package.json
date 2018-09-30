@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mauromadeit/vue-commons": "^0.3.3",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",

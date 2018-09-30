@@ -1,5 +1,6 @@
 import moment from 'moment'
 import db from '@/database'
+import _debounce from 'lodash/debounce'
 
 function defaultState() {
   return {
@@ -21,12 +22,12 @@ const mutations = {
 }
 
 const actions = {
-  savePost({ state }) {
+  savePost: _debounce(({ state }) => {
     const payload = state
     payload.lastUpdated = moment().format('x')
     if (payload.id) db.set('posts/'+payload.id, payload).subscribe()
     else db.push('posts', payload).subscribe()
-  },
+  }, 3000),
 }
 
 export default {
