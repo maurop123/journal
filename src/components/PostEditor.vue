@@ -34,8 +34,7 @@
     },
     watch: {
       activePostId(val, old) {
-        if (val !== old)
-          this.newDescription = this.activePost.description
+        if (val !== old) this.newDescription = this.activePost.description
       },
     },
     methods: {

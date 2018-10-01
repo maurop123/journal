@@ -20,8 +20,10 @@ const getters = {
 
 const mutations = {
   resetActivePost(state) {
+    state.id = null // So delete works
     Object.entries(defaultState())
     .forEach(([key, val]) => state[key] = val)
+    delete state.id
   },
 }
 
@@ -36,6 +38,10 @@ const actions = {
         val: post,
       })
     })
+  },
+  deleteActivePost({ state, commit }) {
+    db.del('posts', state).subscribe()
+    commit('resetActivePost')
   },
 }
 

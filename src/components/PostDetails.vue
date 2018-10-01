@@ -7,15 +7,21 @@
           stateProp="activePost.title"
           label="Title"
         )
+    v-card-actions(v-if="activePost.id" class="px-0")
+      v-spacer
+      v-btn(@click="deleteActivePost") Delete
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'post-details',
     computed: {
-      ...mapGetters(['activePost']),
+      ...mapState(['activePost']),
+    },
+    methods: {
+      ...mapActions(['deleteActivePost']),
     },
   }
 </script>

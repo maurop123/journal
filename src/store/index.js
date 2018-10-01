@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import { store as _store } from '@mauromadeit/vue-commons'
 import db from '@/database'
 import activePost from './modules/activePost'
-
+import _sortBy from 'lodash/sortBy'
 
 Vue.use(Vuex)
 
@@ -26,7 +26,7 @@ const store = new Vuex.Store({
 db.get('posts', true, false).subscribe(posts => {
   if (posts) store.commit('setState', {
     key: 'posts',
-    val: posts.reverse(),
+    val: _sortBy(posts, p => p.lastUpdated * -1),
   })
 })
 
