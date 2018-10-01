@@ -3,7 +3,6 @@ import db from '@/database'
 
 function defaultState() {
   return {
-    id: null,
     title: '',
     description: '',
     createdDatetime: moment().format('x'),
@@ -27,11 +26,16 @@ const mutations = {
 }
 
 const actions = {
-  savePost({ state }) {
+  savePost({ state, commit }) {
     const payload = state
     payload.lastUpdated = moment().format('x')
     if (payload.id) db.set('posts/'+payload.id, payload).subscribe()
-    else db.push('posts', payload).subscribe()
+    else db.push('posts', payload).subscribe(post => {
+      commit('setState', {
+        key: 'activePost',
+        val: post,
+      })
+    })
   },
 }
 
