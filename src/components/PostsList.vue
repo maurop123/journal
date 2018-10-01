@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list
+  v-list(class="scrollable")
     v-subheader
       span Posts
       v-spacer
@@ -28,3 +28,10 @@
     },
   }
 </script>
+
+<style scoped>
+  .scrollable {
+    max-height: 300px;
+    overflow: auto;
+  }
+</style>
