@@ -13,7 +13,7 @@ function defaultState() {
 const state = defaultState()
 
 const getters = {
-  lastUpdated({ lastUpdated }) {
+  lastUpdated: ({ lastUpdated }) => () => {
     return (lastUpdated) ? moment(lastUpdated, 'x').fromNow() : lastUpdated
   },
 }
