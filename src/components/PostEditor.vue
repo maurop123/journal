@@ -6,6 +6,7 @@
         medium-editor(
           slot-scope="{ value, input }"
           :value="newDescription"
+          :options="options"
           @input="input"
           class="elevation-0"
         )
@@ -24,7 +25,12 @@
     name: 'posts-editor',
     data() {
       return {
-        newDescription: ''
+        newDescription: '',
+        options: {
+          toolbar: {
+            diffTop: -70,
+          },
+        }
       }
     },
     computed: {

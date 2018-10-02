@@ -7,7 +7,7 @@
           stateProp="activePost.title"
           label="Title"
         )
-    v-card-actions(v-if="activePost.id" class="px-0")
+    v-card-actions(v-if="activePost.id")
       v-spacer
       v-btn(@click="deleteActivePost") Delete
 </template>

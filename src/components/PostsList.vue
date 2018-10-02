@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list(class="scrollable")
+  v-list(class="scrollable" subheader)
     v-subheader
       span Posts
       v-spacer
@@ -12,16 +12,20 @@
         @click="setActivePost(post.id)"
       )
         v-list-tile-content
-          v-list-tile-title {{ post.title }}
+          v-list-tile-title
+            v-layout
+              v-flex {{ post.title }}
+              v-flex(class="text-xs-right caption") {{ postCreatedDate(post.id) }}
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState, mapGetters, mapMutations } from 'vuex'
 
   export default {
     name: 'posts-list',
     computed: {
       ...mapState(['posts']),
+      ...mapGetters(['postCreatedDate']),
     },
     methods: {
       ...mapMutations(['setActivePost', 'resetActivePost']),

@@ -4,12 +4,23 @@ import { store as _store } from '@mauromadeit/vue-commons'
 import db from '@/database'
 import activePost from './modules/activePost'
 import _sortBy from 'lodash/sortBy'
+import moment from 'moment'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     posts: [],
+  },
+  getters: {
+    postCreatedDate: ({ posts }) => id => {
+      const post = posts.filter(p => p.id === id)[0]
+      return (post) ? moment(post.createdDatetime, 'x').format('MM/DD') : ''
+    },
+    lastUpdatedDate: ({ posts }) => id => {
+      const post = posts.filter(p => p.id === id)[0]
+      return (post) ? moment(post.lastUpdated, 'x').format('MM/DD') : ''
+    },
   },
   mutations: {
     ..._store.mutations,
