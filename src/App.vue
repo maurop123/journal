@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-content
-      app-toolbar
+      app-toolbar(noLogin noScrollToBottom)
         router-view
 </template>
 

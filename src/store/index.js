@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { store as _store } from '@mauromadeit/vue-commons'
+import { store as commons } from '@mauromadeit/vue-commons'
 import db from '@/database'
 import activePost from './modules/activePost'
 import _sortBy from 'lodash/sortBy'
@@ -10,6 +10,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
+    ...commons.state,
     posts: [],
   },
   getters: {
@@ -23,7 +24,7 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
-    ..._store.mutations,
+    ...commons.mutations,
     setActivePost(state, id) {
       const post = state.posts.filter(p => p.id === id)[0]
       if (post) state.activePost = { ...post }
