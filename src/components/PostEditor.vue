@@ -14,8 +14,6 @@
       span(v-if="lastUpdated()"
         class="caption"
       ) Last updated {{ lastUpdated() }}
-      v-spacer
-      v-btn(@click="savePost") save
 </template>
 
 <script>
@@ -42,9 +40,6 @@
       activePostId(val, old) {
         if (val !== old) this.newDescription = this.activePost.description
       },
-    },
-    methods: {
-      ...mapActions(['savePost']),
     },
   }
 </script>

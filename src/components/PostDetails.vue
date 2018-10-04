@@ -8,8 +8,9 @@
           label="Title"
         )
     v-card-actions(v-if="activePost.id")
+      v-btn(@click="deleteActivePost" color="red" dark) Delete
       v-spacer
-      v-btn(@click="deleteActivePost") Delete
+      v-btn(@click="savePost" color="white" class="primary--text") Save
 </template>
 
 <script>
@@ -21,7 +22,7 @@
       ...mapState(['activePost']),
     },
     methods: {
-      ...mapActions(['deleteActivePost']),
+      ...mapActions(['deleteActivePost', 'savePost']),
     },
   }
 </script>
