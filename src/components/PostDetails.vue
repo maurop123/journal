@@ -7,7 +7,7 @@
           stateProp="activePost.title"
           label="Title"
         )
-    v-card-actions(v-if="activePost.id")
+    v-card-actions
       v-btn(@click="deleteActivePost" color="red" dark) Delete
       v-spacer
       v-btn(@click="savePost" color="white" class="primary--text") Save

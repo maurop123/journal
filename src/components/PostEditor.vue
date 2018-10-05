@@ -34,10 +34,19 @@
     computed: {
       ...mapGetters(['lastUpdated']),
       activePost() { return this.$store.state.activePost },
-      activePostId() { return this.$store.state.activePost.id },
+      activePostId() {return this.$store.state.activePost.id },
+      activePostTitle() {return this.$store.state.activePost.title },
     },
     watch: {
       activePostId(val, old) {
+        this.updateDescription(val, old)
+      },
+      activePostTitle(val, old) {
+        this.updateDescription(val, old)
+      },
+    },
+    methods: {
+      updateDescription(val, old) {
         if (val !== old) this.newDescription = this.activePost.description
       },
     },

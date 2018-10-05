@@ -31,6 +31,23 @@ const actions = {
   savePost({ state, commit }) {
     const payload = state
     payload.lastUpdated = moment().format('x')
+
+    if (!payload.title) {
+      payload.title = payload.description
+      .split('</p>')[0]
+      .slice(3)
+
+      let descLines = payload.description.split('><')
+      if (descLines.length > 1) {
+        descLines = descLines.slice(1)
+        descLines[0] = '<' + descLines[0]
+        payload.description = descLines.join('><')
+      } else {
+        payload.description = ''
+      }
+    }
+
+    // Save
     if (payload.id) db.set('posts/'+payload.id, payload).subscribe()
     else db.push('posts', payload).subscribe(post => {
       commit('setState', {
