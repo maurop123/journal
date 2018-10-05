@@ -1,6 +1,6 @@
 {
-  "name": "firebase-blog",
-  "short_name": "firebase-blog",
+  "name": "Journal",
+  "short_name": "Journal",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
