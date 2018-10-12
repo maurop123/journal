@@ -1,12 +1,24 @@
 <template lang="pug">
   v-app
     v-content
-      app-toolbar(noLogin noScrollToBottom)
+      app-toolbar(
+        v-bind="{topNav, title}"
+        noLogin
+        noScrollToBottom
+      )
         router-view
 </template>
 
 <script>
   export default {
     name: 'app',
+    data() {
+      return {
+        title: 'Journal',
+        topNav: [{
+          path: 'posts'
+        }],
+      }
+    },
   }
 </script>
