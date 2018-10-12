@@ -50,10 +50,7 @@ const actions = {
     // Save
     if (payload.id) db.set('posts/'+payload.id, payload).subscribe()
     else db.push('posts', payload).subscribe(post => {
-      commit('setState', {
-        key: 'activePost',
-        val: post,
-      })
+      commit('setState', ['activePost',  post])
     })
   },
   deleteActivePost({ state, commit }) {

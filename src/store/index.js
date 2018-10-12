@@ -36,10 +36,9 @@ const store = new Vuex.Store({
 })
 
 db.get('posts', true, false).subscribe(posts => {
-  if (posts) store.commit('setState', {
-    key: 'posts',
-    val: _sortBy(posts, p => p.lastUpdated * -1),
-  })
+  if (posts) store.commit('setState', [
+    'posts', _sortBy(posts, p => p.lastUpdated * -1)
+  ])
 })
 
 export default store
