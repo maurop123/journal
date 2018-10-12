@@ -21,3 +21,17 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+window.addEventListener('load', function() {
+  function updateOnlineStatus(event) {
+    if (navigator.onLine) {
+      store.commit('setState', ['toast', 'Connection Restored'])
+    } else {
+      store.commit('setState', ['toast', 'Offline'])
+    }
+  }
+
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+})
+
