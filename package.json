@@ -10,7 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@mauromadeit/vue-commons": "^0.4.8",
+    "@mauromadeit/vue-commons": "^0.4.9",
     "moment": "^2.22.2",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",

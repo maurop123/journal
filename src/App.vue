@@ -1,12 +1,10 @@
 <template lang="pug">
-  v-app
-    v-content
-      app-toolbar(
-        v-bind="{topNav, title}"
-        noLogin
-        noScrollToBottom
-      )
-        router-view
+  app-toolbar(
+    v-bind="{topNav, title}"
+    noLogin
+    noScrollToBottom
+  )
+    router-view
 </template>
 
 <script>
